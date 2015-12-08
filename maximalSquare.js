@@ -7,14 +7,25 @@
 // finds the largest square containing all 1's and returns its area
 var maximalSquare = function (matrix) {
   // store largest area, initialize to 0
+  var largestArea = 0;
   // iterate through each value in matrix
-    // store current area
-    // if the value is 1, current area is 1
-      // check adjacent spaces for 1s
-      // if 0 is found, or index is out of bounds of matrix, log area
-      // if all 1s, repeat
-    // compare current area to largest, and set largest to max value
+  for (var row = 0; row < matrix.length; row++) {
+    for (var col = 0; col < matrix[0].length; col++) {
+      // check for largest square if current index is a 1
+      if (matrix[row][col] === 1) {
+        // store current iteration
+        var iteration = 1;
+        // increase current iteration while there is a larger square
+        while(largerSquare(matrix, iteration, row, col)) {
+          iteration++;
+        }
+        // compare current area to largest, and set largest to max value
+        largestArea = Math.max(largestArea, iteration * iteration);
+      }
+    }
+  }
   // return largest area
+  return largestArea;
 };
 
 // helper function that takes iteration number and current indices and checks
