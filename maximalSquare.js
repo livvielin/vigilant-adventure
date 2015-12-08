@@ -19,8 +19,35 @@ var maximalSquare = function (matrix) {
 
 // helper function that takes iteration number and current indices and checks
 // if this particular iteration creates a new square
-var largerSquare = function () {
-  //
+var largerSquare = function (matrix, iteration, row, col) {
+  // helper function that tells us whether index is out of bounds or a 0
+  var isValid = function (rowIndex, colIndex) {
+    if (rowIndex >= matrix.length || colIndex >= matrix[0].length) {
+      return false;
+    }
+    if (matrix[rowIndex][colIndex] === 0) {
+      return false;
+    }
+    return true;
+  };
+
+  var valid = true;
+  // check validity for all additional spaces that would make up the square
+  for (var i = 0; i < iteration; i++) {
+    // check vertical
+    if (!isValid(row + i, col + iteration)) {
+      valid = false;
+    }
+    // check horizontal
+    if (!isValid(row + iteration, col + i)) {
+      valid = false;
+    }
+  }
+  // check diagonal
+  if (!isValid(row + iteration, col + iteration)) {
+    valid = false;
+  }
+  return valid;
 };
 
 // number of spaces to check is iteration number x 2 + 1
@@ -28,7 +55,7 @@ var largerSquare = function () {
 
 // TEST
 var testMatrix = [[1, 0, 1, 0, 0],
-              [1, 0, 1, 1, 1],
-              [1, 1, 1, 1, 1],
-              [1, 0, 0, 1, 0]];
+                  [1, 0, 1, 1, 1],
+                  [1, 1, 1, 1, 1],
+                  [1, 0, 0, 1, 0]];
 console.log(maximalSquare(testMatrix)); // should be 4
