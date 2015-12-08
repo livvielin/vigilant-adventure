@@ -25,16 +25,30 @@ var grandchild21 = new Node(1);
 var grandchild22 = new Node(3);
 var grandchild23 = new Node(9);
 var grandchild24 = new Node(8);
-root.left = child21;
-root.right = child22;
-child1.left = grandchild21;
-child1.right = grandchild22;
-child2.left = grandchild23;
-child2.right = grandchild24;
+root2.left = child21;
+root2.right = child22;
+child21.left = grandchild21;
+child21.right = grandchild22;
+child22.left = grandchild23;
+child22.right = grandchild24;
 
+var lastValue = null;
 // function to check whether a tree is a valid BST
 var validateBST = function (node) {
-  //
+  if (node === null) {
+    return true;
+  }
+  if (!validateBST(node.left)) {
+    return false;
+  }
+  if (lastValue !== null && node.value <= lastValue) {
+    return false;
+  }
+  lastValue = node.value;
+  if (!validateBST(node.right)) {
+    return false;
+  }
+  return true;
 };
 
 console.log(validateBST(root)); // should return true
