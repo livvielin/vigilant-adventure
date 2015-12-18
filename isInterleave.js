@@ -20,6 +20,9 @@ var isInterleave = function(s1, s2, s3) {
   for (var c = 0; c < s3.length; c++) {
     // check if current letter in s3 is first in s1 or s2
     var current = s3[c];
+
+    // if first letter of s1 and s2 are the same, need to try both ways
+
     if (current === s1[0]) {
       // remove first letter from s1
       if (s1.length === 1) {
