@@ -30,7 +30,7 @@ var maxProfit = function (prices) {
   // function to return next time to sell
   var sell = function (startIndex) {
     // best time to sell is highest price before price decreases
-    for (var i = startIndex + 1; i < prices.length; i++) {
+    for (var i = startIndex + 1; i < prices.length - 1; i++) {
       if (prices[i] > prices[i + 1]) {
         return i;
       }
@@ -56,6 +56,8 @@ var maxProfit = function (prices) {
       if (nextSell !== prices.length) {
         profit += prices[nextSell] - lastBuyPrice;
         canBuy = true;
+      } else if (nextSell === prices.length && prices[prices.length - 1] > lastBuyPrice) {
+        profit += prices[prices.length - 1] - lastBuyPrice;
       }
       // set current day to sell date
       currentDay = nextSell;
