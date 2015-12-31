@@ -63,7 +63,21 @@ var rectangle4 = {
   'height': 5
 };
 
+var rectangle5 = {
+  'x': 2,
+  'y': 7,
+  'width': 4,
+  'height': 5
+};
+
+// right intersection
 console.log(intersection(rectangle1, rectangle2));
+// no intersection
 console.log(intersection(rectangle1, rectangle3));
 console.log(intersection(rectangle2, rectangle3));
+// right intersection
 console.log(intersection(rectangle2, rectangle4));
+// one rectangle completely contained in other
+console.log(intersection(rectangle4, rectangle5));
+
+// can also refactor to use find range overlap helper function
